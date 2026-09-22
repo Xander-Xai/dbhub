@@ -43,6 +43,7 @@ jobs:
           git -C "$RUNNER_TEMP/producer" checkout --detach "$PRODUCER_SHA"
           python -m venv "$RUNNER_TEMP/venv"; source "$RUNNER_TEMP/venv/bin/activate"; pip install -q -e "$RUNNER_TEMP/producer"
           set +e
+            cd "$RUNNER_TEMP/producer"
           python -m src.producer --trivy "$RUNNER_TEMP/trivy" --artifact "$RUNNER_TEMP/artifact/release.tgz" --out "$RUNNER_TEMP/producer-out"
           echo $? > "$RUNNER_TEMP/producer.exit"; set -e
       - name: Run immutable Core and digest-negative control
