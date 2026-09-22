@@ -45,7 +45,6 @@ jobs:
           set +e
           python -m src.producer --trivy "$RUNNER_TEMP/trivy" --artifact "$RUNNER_TEMP/artifact/release.tgz" --out "$RUNNER_TEMP/producer-out"
           echo $? > "$RUNNER_TEMP/producer.exit"; set -e
-        working-directory: ${{ runner.temp }}/producer
       - name: Run immutable Core and digest-negative control
         shell: bash
         run: |
